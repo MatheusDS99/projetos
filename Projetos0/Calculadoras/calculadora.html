@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculadora</title>
+
+        <script>
+           
+            function adicionar(x, y) {
+                return x + y;
+            }
+
+            function subtrair(x, y) {
+                return x - y;
+            }
+
+            function multiplicar(x, y) {
+                return x * y;
+            }
+
+            function dividir(x, y) {
+                if (y !== 0) {
+                    return x / y;
+                } else {
+                    return null; 
+                }
+            }
+
+            
+            function calculadora() {
+                while (true) {
+                    let escolha = prompt("Escolha a operação:\n1. Adição\n2. Subtração\n3. Multiplicação\n4. Divisão\n5. Sair");
+
+                    if (escolha === '5') {
+                        alert("Encerrando a calculadora.");
+                        break;
+                    }
+
+                    if (['1', '2', '3', '4'].includes(escolha)) {
+                        let input1 = prompt("Digite o primeiro número:");
+                        let input2 = prompt("Digite o segundo número:");
+
+                        let num1 = parseFloat(input1); 
+                        let num2 = parseFloat(input2); 
+
+                        if (isNaN(num1) || isNaN(num2)) {
+                            alert("Erro: Por favor, insira números válidos.");
+                            continue;
+                        }
+
+                        let resultado;
+                        switch (escolha) {
+                            case '1':
+                                resultado = adicionar(num1, num2);
+                                alert(`Resultado: ${num1} + ${num2} = ${resultado}`);
+                                break;
+                            case '2':
+                                resultado = subtrair(num1, num2);
+                                alert(`Resultado: ${num1} - ${num2} = ${resultado}`);
+                                break;
+                            case '3':
+                                resultado = multiplicar(num1, num2);
+                                alert(`Resultado: ${num1} * ${num2} = ${resultado}`);
+                                break;
+                            case '4':
+                                resultado = dividir(num1, num2);
+                                if (resultado === null) {
+                                    alert("Erro: Divisão por zero.");
+                                } else {
+                                    alert(`Resultado: ${num1} / ${num2} = ${resultado}`);
+                                }
+                                break;
+                            default:
+                                alert("Escolha inválida, tente novamente.");
+                                break;
+                        }
+                    } else {
+                        alert("Escolha inválida, tente novamente.");
+                    }
+                }
+            }
+
+            calculadora();
+           
+
+
+
+
+
+        </script>
+
+
+
+
+
+    </head>
+    <body>
+        
+    </body>
+</html>

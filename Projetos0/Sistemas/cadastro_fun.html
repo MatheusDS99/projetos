@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Funcionarios          
+        </title>
+
+    <script>
+        // Lista de armazenamento dos funcionários e inicializa com o ID global
+        let listaFuncionarios = [];
+        let idGlobal = 4516241;
+
+        // Função para cadastrar um novo funcionário, gerando seu ID
+        function cadastrarFuncionario(id) {
+            console.log('-'.repeat(14), 'Menu de Cadastro', '-'.repeat(14));
+            console.log(`ID do funcionário: ${id}`);
+
+            // Pede as informações do funcionário para cadastro
+            let nome = prompt("Nome do funcionário: ");
+            let setor = prompt("Setor do funcionário: ");
+            let salario = prompt("Salário do funcionário: ");
+
+            // Cria um objeto com os dados do funcionário
+            let funcionario = { id: id, nome: nome, setor: setor, salario: salario };
+
+            // Adiciona o objeto à lista de funcionários
+            listaFuncionarios.push(funcionario);
+            console.log("Funcionário cadastrado com sucesso!");
+        }
+
+        // Função para consultar funcionários
+        function consultarFuncionarios() {
+            while (true) {
+                console.log('-'.repeat(14), 'Menu de Consulta', '-'.repeat(14));
+                let opcao = prompt("1. Consultar Todos\n2. Consultar por Id\n3. Consultar por Setor\n4. Retornar ao menu\nEscolha uma opção: ");
+                console.log('-'.repeat(14));
+
+                if (opcao === '1') {
+                    // Exibição de todos os funcionários
+                    console.log('-'.repeat(14));
+                    listaFuncionarios.forEach(funcionario => {
+                        console.log(`Id: ${funcionario.id}\nNome: ${funcionario.nome}\nSetor: ${funcionario.setor}\nSalário: ${funcionario.salario}\n`);
+                    });
+                } else if (opcao === '2') {
+                    // Exibição por ID
+                    let idConsulta = parseInt(prompt("Informe o id do funcionário: "));
+                    let encontrado = listaFuncionarios.find(funcionario => funcionario.id === idConsulta);
+                    if (encontrado) {
+                        console.log(`Id: ${encontrado.id}\nNome: ${encontrado.nome}\nSetor: ${encontrado.setor}\nSalário: ${encontrado.salario}\n`);
+                    } else {
+                        console.log("Funcionário não encontrado.");
+                    }
+                } else if (opcao === '3') {
+                    // Exibição por Setor
+                    let setorConsulta = prompt("Informe o setor: ");
+                    let encontrados = listaFuncionarios.filter(funcionario => funcionario.setor === setorConsulta);
+                    if (encontrados.length > 0) {
+                        encontrados.forEach(funcionario => {
+                            console.log(`Id: ${funcionario.id}\nNome: ${funcionario.nome}\nSetor: ${funcionario.setor}\nSalário: ${funcionario.salario}\n`);
+                        });
+                    } else {
+                        console.log("Nenhum funcionário encontrado no setor informado.");
+                    }
+                } else if (opcao === '4') {
+                    // Retorna ao menu principal
+                    return;
+                } else {
+                    console.log("Opção inválida");
+                }
+            }
+        }
+
+        // Função para remover um funcionário
+        function removerFuncionario() {
+            let idRemover = parseInt(prompt("Informe o id do funcionário a ser removido: "));
+            let index = listaFuncionarios.findIndex(funcionario => funcionario.id === idRemover);
+            if (index !== -1) {
+                listaFuncionarios.splice(index, 1);
+                console.log("Funcionário removido com sucesso!");
+            } else {
+                console.log("ID inválido");
+            }
+        }
+
+        // Menu principal do programa
+        while (true) {
+            console.log('-'.repeat(14), 'Menu Principal', '-'.repeat(14));
+            let opcao = prompt("1. Cadastrar Funcionário\n2. Consultar Funcionário\n3. Remover Funcionário\n4. Encerrar Programa\nEscolha uma opção: ");
+            console.log('-'.repeat(14));
+
+            if (opcao === '1') {
+                // Incrementa o ID global e cadastra um novo funcionário
+                idGlobal += 1;
+                cadastrarFuncionario(idGlobal);
+            } else if (opcao === '2') {
+                // Chama a função para consultar funcionários
+                consultarFuncionarios();
+            } else if (opcao === '3') {
+                // Chama a função para remover um funcionário
+                removerFuncionario();
+            } else if (opcao === '4') {
+                console.log("Programa encerrado.");
+                break;
+            } else {
+                console.log("Opção inválida.");
+            }
+        }
+
+                
+
+
+    </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
